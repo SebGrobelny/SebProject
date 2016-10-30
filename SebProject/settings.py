@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR), 'posts/static'),
+    os.path.join(os.path.dirname(BASE_DIR), '/static'),
 ]
 
 # STATICFILES_DIRS = [
