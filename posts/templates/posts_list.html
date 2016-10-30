@@ -1,0 +1,94 @@
+<!-- DOCTYPE html--> 
+{% extends "base.html" %}
+{% block content %}
+
+<h1 >Welcome!</h1>
+
+<h2><font color = "black"> Personal Summary: </font></h2>
+	<div class="row">
+	<p >
+	  <div class = 'col-md-8'>
+		<font size="4" color="black">
+		<strong>Hello there my name is Sebastian Grobelny and I am currently a Senior studying Computer Science at the University of California Davis.I hail from the Bay Area and am originally from Poland making me fluent in both Polish and English. I initially started out my college career as a Civil Engineering student, but after exposing myself to Davis's programming classes I fell in love with Computer Science and decided to plan the rest of my life around it. I enjoy playing guitar, construction, weightlifting, rockwall climbing, backpacking and fishing- basically anything having to do with the outdoors.<br>
+		I am currently looking for any and all opportunities in Software Engineering, and Software Development and exploring the Django Framework and Swift as a means to build out some of my app ideas:)<br>
+
+		 <br>
+		<h3> Coursework: </h3>
+		As a student at UC Davis I have engaged in a great variety of programming courses including:<br>
+		
+		<div class="row">
+			<div class = 'col-sm-offset-2'>
+				Algorithim Design and Analysis <br>
+				Data Structures (C++) <br>
+				Databases <br>
+				Computer Architecture<br>
+				Introduction to Machine Learning <br>
+				Introduction to Program and Problem Solving (C) <br>
+				Object Oriented Programming (C++)<br>
+				Programming Languages (Java, Lisp, Prolog)<br>
+			</div>
+		</div>
+
+		<h3> Professional Experience: </h3>
+
+		June-September 2016: GoodData Intern
+
+		<h3> Activities: </h3>
+
+		 
+
+
+	</strong>
+		
+
+
+		
+	</font>
+		</div>
+
+	</p>
+</div>
+
+
+
+<h2><font color ="black"> Projects: </font></h2>
+<div class="row">
+{% for obj in object_list %}
+	<div class = 'col-sm-12'>
+     <div class="thumbnail">
+     	{% if obj.image %}
+      <img src='{{obj.image.url}}' class='img-responsive'/>
+      	{%endif%}
+       <div class="caption">
+        <h3><a href = '{{obj.get_absolute_url}}'> {{obj.title}} </a> <small>{{ obj.timestamp|timesince }}</small> </h3>
+        <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
+        <p><a href = '{{obj.get_absolute_url}}' class="btn btn-primary" role="button">View</a></p>
+       </div>
+     </div>
+  </div>
+
+
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+
+
+{% endblock content%}
+
+
+
+

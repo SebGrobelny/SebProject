@@ -1,0 +1,99 @@
+{% load staticfiles %}
+<!-- DOCTYPE html-->
+
+<html>
+
+<head>
+<title> {% block head_title %} Seb's Blog {% endblock head_title %} </title>
+
+
+
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+<!--<style type="text/css">
+  /*      body { 
+         background: url('{% static "css/images/background.jpg" %}') no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        }*/
+/*</style>*/-->
+
+<style> 
+{% block style %} {% endblock style %}
+</style>
+</head>
+
+<body>
+
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+{% include "messages_display.html" %}
+<div class='container'>
+	{% block content %}{% endblock content%}
+</div>
+
+
+</body>
+</html>
+
+<!-- Dynamic url routing -->
+<!-- <a href = '/posts/{{obj.id}}/'> {{obj.title}} </a> <br> -->
+
+
+
+
+<!-- moved this over to posts_lists.html
+ 	<h1> {{title}} is working </h1>
+	<p> Parent Page </p>
+	{% for obj in object_list %}
+		posts/id/
+		{% url "posts:detail" id=obj.id %}
+		<a href = '{{obj.get_absolute_url}}'> {{obj.title}} </a> <br>
+			{{obj.content}} <br>
+			{{obj.timestamp}} <br>
+			{{obj.updated}}<br>
+			{{obj.id}} <br>
+
+	{% endfor %} 
+
+
+
+<link href="{% static 'bootstrap2/css/bootstrap.css' %}"  rel="stylesheet" crossorigin="anonymous" />  
+<link  href="{% static 'bootstrap2/css/bootstrap.min.css' %}"  rel="stylesheet" crossorigin="anonymous"/> 
+
+
+
+<style type="text/css">
+        body { 
+         background: url('{% static "bootstrap2/img/bg.jpg" %}') no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        }*/
+</style>
+
+
+
+
+
+<script  src="{% static 'bootstrap2/js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+ <script  src="{% static 'bootstrap2/js/bootstrap.js' %}" crossorigin="anonymous" ></script> 
+
+
+
+ -->

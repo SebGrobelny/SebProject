@@ -1,0 +1,76 @@
+<!-- DOCTYPE html-->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_title %} {{instance.title }} | {{block.super}} {% endblock head_title %}
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+    <!-- displays message to screen -->
+
+<div class='col-sm-6 col-sm-offset-3'>
+	<style type="text/css">
+        body { 
+         background: url("SebBlog/bootstrap2/img/portfolio-4.jpg") no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        }
+</style>
+
+	{% if instance.image %}
+
+	<img src='{{instance.image.url}}' class='img-responsive'/>
+
+	{% endif %}
+
+
+<h1> {{title}}  <small> 
+</small> </h1>
+
+Project: <a href="{{instance.project_url}}"> {{instance.project_url}} </a> <br>
+Source Code: <a href="{{instance.sourceCode_url}}"> {{instance.sourceCode_url}} </a>
+
+<!-- gives exact url of where youre at {{ request.build_absolute_uri }} -->
+
+<!-- {{instance.title}} <br> -->
+<!-- {{share_string}}<br> -->
+
+<!-- <a href="https://www.facebook.com/sharer/sharer.php?u=http://CodingForEntrepreneurs.com/">
+Facebook
+</a>
+
+<a href="https://twitter.com/home?status={{share_string}}%20{{ request.build_absolute_uri }}">
+Twitter
+</a>
+
+<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+
+
+<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{instance.title}}
+&summary={{share_string}}&source=http://swiftforentrepreneurs.com/">
+Linkedin
+</a>
+
+<a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{instance.title}}">Reddit</a> -->
+
+     
+	
+	<strong> {{instance.content|linebreaks}} </strong> <br>
+
+	
+	<!-- {{instance.updated}}<br> -->
+	<!-- {{instance.id}} <br> -->
+</div>
+
+{% endblock content %}
