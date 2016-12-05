@@ -44,6 +44,7 @@ class Post(models.Model):
 
 
 
+
 #could not get slug to work :(s
 #recursive function to check if slug created
 

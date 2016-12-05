@@ -11,7 +11,13 @@ urlpatterns = [
 	url(r'^(?P<id>\d+)/delete/$', posts_delete, name = 'posts_delete'),
 	url(r'^$', posts_list, name = 'list'),
 	url(r'^(?P<id>\d+)/$', posts_detail, name = 'detail'),
-	url(r'^(?P<id>\d+)/update/$', posts_update, name = 'posts_update')
+	url(r'^(?P<id>\d+)/update/$', posts_update, name = 'posts_update'),
+	# url(r'^register/$',views.UserFormView.as_view(), name = 'register')
 
 
 	]
+
+	if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )

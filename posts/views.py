@@ -3,11 +3,13 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.http import Http404
 
 from .models import Post
 
-from .forms import PostForm
+from .forms import PostForm,UserForm
 
 # Create your views here.
 #render returns html content
@@ -15,6 +17,8 @@ from .forms import PostForm
 
 def posts_create(request):
 	#gets rid of validation text
+	if not request.user.is_staff or not request.user.is_superuser:
+		raise Http404
 	form = PostForm(request.POST or None, request.FILES or None)
 
 	if form.is_valid():
@@ -39,7 +43,8 @@ def posts_create(request):
 
 def posts_update(request,id=None):
 	#combines post_detail with post_create
-
+	if not request.user.is_staff or not request.user.is_superuser:
+		raise Http404
 	instance = get_object_or_404(Post, id=id)
 	form = PostForm(request.POST or None, request.FILES or None, instance=instance)
 
@@ -70,6 +75,8 @@ def posts_detail(request, id=None):
 	return render(request, "posts_detail.html", context_data)
 
 def posts_delete(request, id = None):
+	if not request.user.is_staff or not request.user.is_superuser:
+		raise Http404
 	instance = get_object_or_404(Post, id = id)
 	instance.delete()
 	messages.success(request, "Successfully Deleted")
@@ -101,6 +108,39 @@ def posts_list(request):
 
 	return render(request, "posts_list.html", context_data)
 
+
+# class UserFormView(View):
+# 	form_class = UserForm
+
+# 	def get(self,request):
+# 		form = self.form_class(None)
+# 		context_data = {
+# 		"form":form
+# 		}
+# 		return render(request, "posts_user.html",context_data)
+
+
+# 	def post():
+# 		form = self.form_class(request.POST)
+# 		conext_date = { "form":form}
+
+# 		if form.is_valid():
+
+# 			user = form.save(commit=False)
+# 			username = form.cleaned_data['username']
+# 			password = form.cleaned_data['password']
+# 			user.set_password(password)
+# 			user.save()
+
+# 			user = authenticate(username=username,password=password)
+
+# 		if user is not None:
+
+# 			if user.is_active:
+# 				login(request,user)
+# 				return redirect("posts_detail.html")
+
+# 		return render(request, "posts_user.html",context_data)
 
 
 #authenticated user code
